@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "tech.thatgravyboat"
-version = "1.0-SNAPSHOT"
+version = "1.1"
 
 repositories {
     mavenCentral()
@@ -51,7 +51,7 @@ publishing {
             pom {
                 name.set("Jukebox")
                 description.set("Music service library for multiple services.")
-                url.set("https://github.com/ThatGravyBoat/Jukebox")
+                url.set("https://github.com/ToCraft/Jukebox")
 
                 licenses {
                     license {
@@ -60,20 +60,21 @@ publishing {
                 }
 
                 scm {
-                    connection.set("git:https://github.com/ThatGravyBoat/Jukebox.git")
-                    developerConnection.set("git:https://github.com/ThatGravyBoat/Jukebox.git")
-                    url.set("https://github.com/ThatGravyBoat/Jukebox")
+                    connection.set("git:https://github.com/ToCraft/Jukebox.git")
+                    developerConnection.set("git:https://github.com/ToCraft/Jukebox.git")
+                    url.set("https://github.com/ToCraft/Jukebox")
                 }
             }
         }
     }
     repositories {
-        maven {
-            setUrl("https://maven.resourcefulbees.com/repository/thatgravyboat/")
-
-            credentials {
-                username = System.getenv("MAVEN_USER")
-                password = System.getenv("MAVEN_PASS")
+        if (System.getenv("MAVEN_PASS") != null) {
+            maven("https://maven.tocraft.dev/public") {
+                name = "ToCraftMavenPublic"
+                credentials {
+                    username = "tocraft"
+                    password = System.getenv("MAVEN_PASS")
+                }
             }
         }
     }
